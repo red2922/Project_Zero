@@ -10,19 +10,7 @@ public class PlayerMovements : MonoBehaviour
 
     public float speed = 8f;
 
-    //Functions
-
-
-    
-    public void GetMove(Vector2 input) // Get Player inputs (Controller or keyboard)
-    {
-        Vector3 moveDirection = Vector3.zero;
-
-
-
-
-    }
-
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -35,4 +23,18 @@ public class PlayerMovements : MonoBehaviour
     {
         
     }
+
+    //Functions
+
+
+
+    public void GetMove(Vector2 input) // Get Player inputs (Controller or keyboard)
+    {
+        Vector3 moveDirection = Vector3.zero;
+
+
+
+
+    }
+
 }

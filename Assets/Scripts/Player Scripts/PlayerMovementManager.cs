@@ -10,6 +10,24 @@ public class PlayerMovementManager : MonoBehaviour
     private PlayerControls.MovementActions basicMovements;
 
     private PlayerMovements move;
+    private PlayerMotor motor;
+    
+
+    //Essentially Main/What is going to be player in game
+    void Awake()
+    {
+        playerMovements = new PlayerControls();
+        basicMovements = playerMovements.Movement;
+        motor = GetComponent<PlayerMotor>();
+
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        motor.getMove(basicMovements.basicMovement.ReadValue<Vector2>());
+    }
 
     //Functions
 
@@ -23,23 +41,6 @@ public class PlayerMovementManager : MonoBehaviour
     {
         basicMovements.Disable();
     }
-
-    //Essentially Main/What is going to be player in game
-    void Awake()
-    {
-        playerMovements = new PlayerControls();
-        basicMovements = playerMovements.Movement;
-
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-  
 
 
 
