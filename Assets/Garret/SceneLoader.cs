@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    // function to load test_cube
-    public void LoadCube()
+    // function to load Main_Game
+    public void LoadGame()
     {
-        SceneManager.LoadScene("test_Cube");
+        SceneManager.LoadScene("Main_Game");
     }
     // other functions will have to reference scene name in order to load
 
