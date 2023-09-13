@@ -11,6 +11,10 @@ public class PlayerMovementManager : MonoBehaviour
 
     private PlayerMovements move;
     private PlayerMotor motor;
+
+    public Vector2 look;
+
+    public bool cursorInputForLook = true;
     
 
     //Essentially Main/What is going to be player in game
@@ -19,7 +23,6 @@ public class PlayerMovementManager : MonoBehaviour
         playerMovements = new PlayerControls();
         basicMovements = playerMovements.Movement;
         motor = GetComponent<PlayerMotor>();
-
         
     }
 
@@ -42,7 +45,20 @@ public class PlayerMovementManager : MonoBehaviour
         basicMovements.Disable();
     }
 
+    public void OnLook(InputValue value)
+    {
+        if (cursorInputForLook)
+        {
+            LookInput(value.Get<Vector2>());
+        }
+    }
 
+
+
+    public void LookInput(Vector2 newLookDirection)
+    {
+        look = newLookDirection;
+    }
 
 
 

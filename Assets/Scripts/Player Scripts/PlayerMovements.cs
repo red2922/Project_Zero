@@ -7,7 +7,6 @@ public class PlayerMovements : MonoBehaviour
     //Variables
     private CharacterController Player;
     private Vector3 playerVelocity;
-
     public float speed = 8f;
 
  
@@ -31,10 +30,6 @@ public class PlayerMovements : MonoBehaviour
     public void GetMove(Vector2 input) // Get Player inputs (Controller or keyboard)
     {
         Vector3 moveDirection = Vector3.zero;
-
-
-
-
     }
 
 }
