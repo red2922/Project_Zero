@@ -23,13 +23,13 @@ public class PlayerMovementManager : MonoBehaviour
         playerMovements = new PlayerControls();
         basicMovements = playerMovements.Movement;
         motor = GetComponent<PlayerMotor>();
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         motor.getMove(basicMovements.basicMovement.ReadValue<Vector2>());
+        motor.CharRotation(basicMovements.basicMovement.ReadValue<Vector2>());
     }
 
     //Functions
@@ -53,13 +53,9 @@ public class PlayerMovementManager : MonoBehaviour
         }
     }
 
-
-
     public void LookInput(Vector2 newLookDirection)
     {
         look = newLookDirection;
     }
-
-
 
 }

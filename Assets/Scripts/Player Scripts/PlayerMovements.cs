@@ -8,7 +8,6 @@ public class PlayerMovements : MonoBehaviour
     private CharacterController Player;
     private Vector3 playerVelocity;
     public float speed = 8f;
-
  
 
     // Start is called before the first frame update
@@ -24,9 +23,6 @@ public class PlayerMovements : MonoBehaviour
     }
 
     //Functions
-
-
-
     public void GetMove(Vector2 input) // Get Player inputs (Controller or keyboard)
     {
         Vector3 moveDirection = Vector3.zero;

@@ -31,7 +31,6 @@ public class ThirdPersonController : MonoBehaviour
     private PlayerMovementManager __inputs;
     private GameObject __mainCam;
 
-
     private void Awake()
     {
         Cursor.visible = false;
@@ -90,16 +89,15 @@ public class ThirdPersonController : MonoBehaviour
 
     }
 
-
     private static float ClampAngle(float Angle, float Min, float Max)
     {
         if (Angle < -360f) Angle += 360f;
         if (Angle > 360f) Angle -= 360f;
         return Mathf.Clamp(Angle, Min, Max);
-
-
     }
 
+
+   
 
 
 
