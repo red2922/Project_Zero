@@ -31,6 +31,20 @@ public class ThirdPersonController : MonoBehaviour
     private PlayerMovementManager __inputs;
     private GameObject __mainCam;
 
+    //Player Variables
+    private Vector3 playerVelocity;
+    public float speed = 10f;
+
+    //Player Camera and Rotation
+    [SerializeField] public float turnSpeed = 10f;
+    [SerializeField] public float smoothTime = 0.05f;
+    private float __targetRotate;
+    private float __angle;
+    private Vector3 __direction;
+    private float _curr_Velocity;
+    private bool rotateOnMove = true;
+
+
     private void Awake()
     {
         Cursor.visible = false;
@@ -50,6 +64,7 @@ public class ThirdPersonController : MonoBehaviour
         __controller = GetComponent<CharacterController>();
         __inputs = GetComponent<PlayerMovementManager>();
         __playInput = GetComponent<PlayerInput>();
+
     }
 
     // Update is called once per frame
@@ -58,6 +73,8 @@ public class ThirdPersonController : MonoBehaviour
         CamRotation();
     }
 
+
+    //Functions
     private bool isDeviceMouse()
     {
         if (__playInput.currentControlScheme == "KeyboardMouse")
@@ -71,6 +88,36 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
+    public void getMove(Vector2 input)
+    {
+        Vector3 moveDir = Vector3.zero;
+        moveDir.x = input.x;
+        moveDir.z = input.y;
+
+        __controller.Move(transform.TransformDirection(moveDir) * speed * Time.deltaTime);
+
+
+        //Change Character Direction
+        Vector3 inputDirection = new Vector3(input.x, 0.0f, input.y).normalized;
+
+
+        if (input != Vector2.zero)
+        {
+            __targetRotate = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
+                              __mainCam.transform.eulerAngles.y;
+            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, __targetRotate, ref _curr_Velocity,
+                smoothTime);
+
+            // rotate to face input direction relative to camera position
+            if (rotateOnMove)
+            {
+                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            }
+        }
+
+    }
+
+
     private void CamRotation()
     {
         if (__inputs.look.sqrMagnitude >= __min_Input && !LockCamPosition)
@@ -82,14 +129,13 @@ public class ThirdPersonController : MonoBehaviour
         
         }
 
-        __CamYaw = ClampAngle(__CamYaw, float.MinValue, float.MaxValue);
-        __CamPitch = ClampAngle(__CamPitch, BottomClamp, TopClamp);
+        __CamYaw = clampAngle(__CamYaw, float.MinValue, float.MaxValue);
+        __CamPitch = clampAngle(__CamPitch, BottomClamp, TopClamp);
 
         CinemachineCameraTarget.transform.rotation = Quaternion.Euler(__CamPitch + CamAngleOverride, __CamYaw, 0.0f);
-
     }
 
-    private static float ClampAngle(float Angle, float Min, float Max)
+    private static float clampAngle(float Angle, float Min, float Max)
     {
         if (Angle < -360f) Angle += 360f;
         if (Angle > 360f) Angle -= 360f;
@@ -97,9 +143,12 @@ public class ThirdPersonController : MonoBehaviour
     }
 
 
-   
+    public void setSensitivity(float newSensitivity)
+    {
+        Sensitivity = newSensitivity;
+    }
 
-
+    
 
 
 

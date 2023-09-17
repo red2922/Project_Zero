@@ -10,7 +10,7 @@ public class PlayerMovementManager : MonoBehaviour
     private PlayerControls.MovementActions basicMovements;
 
     private PlayerMovements move;
-    private PlayerMotor motor;
+    private ThirdPersonController controller;
 
     public Vector2 look;
 
@@ -22,14 +22,13 @@ public class PlayerMovementManager : MonoBehaviour
     {
         playerMovements = new PlayerControls();
         basicMovements = playerMovements.Movement;
-        motor = GetComponent<PlayerMotor>();
+        controller = GetComponent<ThirdPersonController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        motor.getMove(basicMovements.basicMovement.ReadValue<Vector2>());
-        motor.CharRotation(basicMovements.basicMovement.ReadValue<Vector2>());
+        controller.getMove(basicMovements.basicMovement.ReadValue<Vector2>());
     }
 
     //Functions
