@@ -32,7 +32,9 @@ public class ThirdPersonController : MonoBehaviour
     private GameObject __mainCam;
 
     //Player Variables
-    private Vector3 playerVelocity;
+    private float playerVelocity;
+    public float vertVelocity;
+    public float horzVelocity;
     public float speed = 10f;
 
     //Player Camera and Rotation
@@ -90,21 +92,16 @@ public class ThirdPersonController : MonoBehaviour
 
     public void getMove(Vector2 input)
     {
+        //Takes in the vector 2 input x + y
         Vector3 moveDir = Vector3.zero;
         moveDir.x = input.x;
         moveDir.z = input.y;
-
-        __controller.Move(transform.TransformDirection(moveDir) * speed * Time.deltaTime);
-
-
-        //Change Character Direction
-        Vector3 inputDirection = new Vector3(input.x, 0.0f, input.y).normalized;
-
-
+        
         if (input != Vector2.zero)
         {
-            __targetRotate = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
-                              __mainCam.transform.eulerAngles.y;
+            //Gets a target Rotation based on x and z. Essentially uses Tan in order to find the radians and then converts to a degree and adds it to the main cam transform. 
+            __targetRotate = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg + __mainCam.transform.eulerAngles.y;
+
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, __targetRotate, ref _curr_Velocity,
                 smoothTime);
 
@@ -113,10 +110,14 @@ public class ThirdPersonController : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
             }
+
+            //Change Character Direction
+            Vector3 inputDirection = Quaternion.Euler(0.0f, __targetRotate, 0.0f) * Vector3.forward;
+
+            __controller.Move(inputDirection.normalized * speed * Time.deltaTime                              /*transform.TransformDirection(moveDir) * speed * Time.deltaTime*/);
         }
 
     }
-
 
     private void CamRotation()
     {
@@ -149,10 +150,5 @@ public class ThirdPersonController : MonoBehaviour
     }
 
     
-
-
-
-
-
 }
 

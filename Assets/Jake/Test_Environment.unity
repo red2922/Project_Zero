@@ -160,6 +160,10 @@ PrefabInstance:
       value: 0.19269215
       objectReference: {fileID: 0}
     - target: {fileID: -4297446187249348513, guid: b4df6f2c3cb1d1a41aebb284fc3513fe, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4297446187249348513, guid: b4df6f2c3cb1d1a41aebb284fc3513fe, type: 3}
       propertyPath: SpringBone.Springs.Array.size
       value: 18
       objectReference: {fileID: 0}
@@ -286,9 +290,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -1728013695380148634, guid: b4df6f2c3cb1d1a41aebb284fc3513fe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2098431127}
-    - targetCorrespondingSourceObject: {fileID: -1728013695380148634, guid: b4df6f2c3cb1d1a41aebb284fc3513fe, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2098431126}
     - targetCorrespondingSourceObject: {fileID: -1728013695380148634, guid: b4df6f2c3cb1d1a41aebb284fc3513fe, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2098431128}
@@ -555,7 +556,7 @@ Transform:
   m_GameObject: {fileID: 1190771983}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.40900287, y: 0.37310004, z: -2.0009315}
+  m_LocalPosition: {x: 0.7390029, y: 0.61310005, z: -2.0009315}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -711,7 +712,7 @@ Transform:
   m_GameObject: {fileID: 1269441111}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.40900287, y: 1.5931001, z: -1.9679314}
+  m_LocalPosition: {x: 0.7390029, y: 1.8331001, z: -1.9679314}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -914,6 +915,11 @@ MonoBehaviour:
   BottomClamp: -30
   CamAngleOverride: 0
   LockCamPosition: 0
+  vertVelocity: 0
+  horzVelocity: 0
+  speed: 10
+  turnSpeed: 10
+  smoothTime: 0.05
 --- !u!114 &2098431125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,20 +950,6 @@ MonoBehaviour:
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2098431126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206300212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64ee25bcf39a03f43a0dd8c35cecff60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  turnSpeed: 60
 --- !u!114 &2098431127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1083,7 +1075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 0.41, y: -0.28, z: 0}
+  ShoulderOffset: {x: 0.74, y: -0.04, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
   CameraDistance: 2
