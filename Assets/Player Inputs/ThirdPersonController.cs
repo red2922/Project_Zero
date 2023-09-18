@@ -149,6 +149,5 @@ public class ThirdPersonController : MonoBehaviour
         Sensitivity = newSensitivity;
     }
 
-    
 }
 
