@@ -62,6 +62,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack&Block"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f5ab2b4-025f-49ee-8815-bb6d4b38a183"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -240,6 +249,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0b21f92-6e59-49c4-ab8b-8a518017221e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack&Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9457c7c5-39f6-4662-a208-f74d472d6f5e"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack&Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""479c07ed-12db-4df5-8014-270fd1ac6311"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack&Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b1008cd7-9197-40b3-a869-f82e6e082c1b"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack&Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -252,6 +305,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Look = m_Movement.FindAction("Look", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
+        m_Movement_AttackBlock = m_Movement.FindAction("Attack&Block", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -317,6 +371,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Look;
     private readonly InputAction m_Movement_Jump;
     private readonly InputAction m_Movement_Sprint;
+    private readonly InputAction m_Movement_AttackBlock;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -325,6 +380,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Movement_Look;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @Sprint => m_Wrapper.m_Movement_Sprint;
+        public InputAction @AttackBlock => m_Wrapper.m_Movement_AttackBlock;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -346,6 +402,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @AttackBlock.started += instance.OnAttackBlock;
+            @AttackBlock.performed += instance.OnAttackBlock;
+            @AttackBlock.canceled += instance.OnAttackBlock;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -362,6 +421,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @AttackBlock.started -= instance.OnAttackBlock;
+            @AttackBlock.performed -= instance.OnAttackBlock;
+            @AttackBlock.canceled -= instance.OnAttackBlock;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -385,5 +447,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnAttackBlock(InputAction.CallbackContext context);
     }
 }
