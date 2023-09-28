@@ -7,7 +7,12 @@ using UnityEngine.InputSystem;
 
 //This script controls looking around
 public class ThirdPersonController : MonoBehaviour
+
 {
+    //Animatior Controller
+    private Animator __animator;
+
+
     [SerializeField] private CinemachineVirtualCamera Camera;
     [SerializeField] private float Sensitivity = 5.0f;
 
@@ -66,7 +71,7 @@ public class ThirdPersonController : MonoBehaviour
         __controller = GetComponent<CharacterController>();
         __inputs = GetComponent<PlayerMovementManager>();
         __playInput = GetComponent<PlayerInput>();
-
+        __animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
