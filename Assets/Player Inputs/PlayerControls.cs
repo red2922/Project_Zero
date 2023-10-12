@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Player Interactions"",
+                    ""type"": ""Button"",
+                    ""id"": ""f6efd05f-26b9-4a77-a01b-00ce65128ac4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -293,6 +302,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Attack&Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1002a5d-40eb-4774-af4d-3210943ce265"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player Interactions"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0213c5f0-3eee-43da-aae6-97f4eb2f8fdb"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player Interactions"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -306,6 +337,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
         m_Movement_AttackBlock = m_Movement.FindAction("Attack&Block", throwIfNotFound: true);
+        m_Movement_PlayerInteractions = m_Movement.FindAction("Player Interactions", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -372,6 +404,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Jump;
     private readonly InputAction m_Movement_Sprint;
     private readonly InputAction m_Movement_AttackBlock;
+    private readonly InputAction m_Movement_PlayerInteractions;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -381,6 +414,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @Sprint => m_Wrapper.m_Movement_Sprint;
         public InputAction @AttackBlock => m_Wrapper.m_Movement_AttackBlock;
+        public InputAction @PlayerInteractions => m_Wrapper.m_Movement_PlayerInteractions;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -405,6 +439,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AttackBlock.started += instance.OnAttackBlock;
             @AttackBlock.performed += instance.OnAttackBlock;
             @AttackBlock.canceled += instance.OnAttackBlock;
+            @PlayerInteractions.started += instance.OnPlayerInteractions;
+            @PlayerInteractions.performed += instance.OnPlayerInteractions;
+            @PlayerInteractions.canceled += instance.OnPlayerInteractions;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -424,6 +461,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AttackBlock.started -= instance.OnAttackBlock;
             @AttackBlock.performed -= instance.OnAttackBlock;
             @AttackBlock.canceled -= instance.OnAttackBlock;
+            @PlayerInteractions.started -= instance.OnPlayerInteractions;
+            @PlayerInteractions.performed -= instance.OnPlayerInteractions;
+            @PlayerInteractions.canceled -= instance.OnPlayerInteractions;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -448,5 +488,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnAttackBlock(InputAction.CallbackContext context);
+        void OnPlayerInteractions(InputAction.CallbackContext context);
     }
 }
