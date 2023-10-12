@@ -14,7 +14,7 @@ public class WeaponItem : Item
     public override void UseItem()
     {
         //below may not be needed
-        Debug.Log($"Using weapon: {itemName}, Damage: {damage}")
+        Debug.Log($"Using weapon: {itemName}, Damage: {damage}");
     
     }
 }
