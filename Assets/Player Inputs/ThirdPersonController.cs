@@ -11,6 +11,7 @@ public class ThirdPersonController : MonoBehaviour
 {
     //Animatior Controller
     private Animator __animator;
+    int isMovingHash;
 
 
     [SerializeField] private CinemachineVirtualCamera Camera;
@@ -72,6 +73,9 @@ public class ThirdPersonController : MonoBehaviour
         __inputs = GetComponent<PlayerMovementManager>();
         __playInput = GetComponent<PlayerInput>();
         __animator = GetComponent<Animator>();
+
+        isMovingHash = Animator.StringToHash("isMoving");
+
     }
 
     // Update is called once per frame
@@ -153,6 +157,16 @@ public class ThirdPersonController : MonoBehaviour
     {
         Sensitivity = newSensitivity;
     }
+
+
+    void handleAnimation()
+    {
+        bool isMoving = __animator.GetBool(isMovingHash);
+    }
+
+
+
+
 
 }
 
