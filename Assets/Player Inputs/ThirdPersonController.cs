@@ -42,6 +42,7 @@ public class ThirdPersonController : MonoBehaviour
     public float vertVelocity;
     public float horzVelocity;
     public float speed = 10f;
+    public bool movementPressed;
 
     //Player Camera and Rotation
     [SerializeField] public float turnSpeed = 10f;
@@ -76,9 +77,17 @@ public class ThirdPersonController : MonoBehaviour
 
         isMovingHash = Animator.StringToHash("isMoving");
 
+
     }
 
     // Update is called once per frame
+    private void Update()
+    {
+        __animator.SetBool(isMovingHash, true);
+        handleAnimation();
+    }
+
+
     private void LateUpdate()
     {
         CamRotation();
@@ -105,9 +114,10 @@ public class ThirdPersonController : MonoBehaviour
         Vector3 moveDir = Vector3.zero;
         moveDir.x = input.x;
         moveDir.z = input.y;
-        
+
         if (input != Vector2.zero)
         {
+            movementPressed = true;
             //Gets a target Rotation based on x and z. Essentially uses Tan in order to find the radians and then converts to a degree and adds it to the main cam transform. 
             __targetRotate = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg + __mainCam.transform.eulerAngles.y;
 
@@ -123,7 +133,12 @@ public class ThirdPersonController : MonoBehaviour
             //Change Character Direction
             Vector3 inputDirection = Quaternion.Euler(0.0f, __targetRotate, 0.0f) * Vector3.forward;
 
-            __controller.Move(inputDirection.normalized * speed * Time.deltaTime                              /*transform.TransformDirection(moveDir) * speed * Time.deltaTime*/);
+            __controller.Move(inputDirection.normalized * speed * Time.deltaTime);
+        }
+
+        if (input == Vector2.zero)
+        {
+            movementPressed = false;
         }
 
     }
@@ -161,12 +176,20 @@ public class ThirdPersonController : MonoBehaviour
 
     void handleAnimation()
     {
+        
         bool isMoving = __animator.GetBool(isMovingHash);
+        
+        if(movementPressed == true)
+        {
+            __animator.SetBool(isMovingHash, true);
+        }
+
+        if (movementPressed == false)
+        {
+            __animator.SetBool(isMovingHash, false);
+        }
+
     }
-
-
-
-
 
 }
 
