@@ -38,11 +38,15 @@ public class ThirdPersonController : MonoBehaviour
     private GameObject __mainCam;
 
     //Player Variables
-    private float playerVelocity;
+    private Vector3 playerVelocity;
+    private bool isGrounded;
     public float vertVelocity;
     public float horzVelocity;
     public float speed = 10f;
     public bool movementPressed;
+    public float gravity = -18f;
+    public float jumpHeight = 2.0f;
+
 
     //Player Camera and Rotation
     [SerializeField] public float turnSpeed = 10f;
@@ -77,14 +81,23 @@ public class ThirdPersonController : MonoBehaviour
 
         isMovingHash = Animator.StringToHash("isMoving");
 
-
     }
 
     // Update is called once per frame
     private void Update()
+
     {
+        isGrounded = __controller.isGrounded;
         __animator.SetBool(isMovingHash, true);
         handleAnimation();
+       
+        if (isGrounded && playerVelocity.y < 0)
+        {
+            playerVelocity.y = -9.8f;
+        }
+        playerVelocity.y += gravity * Time.deltaTime;
+
+        __controller.Move(playerVelocity * Time.deltaTime);
     }
 
 
@@ -134,6 +147,7 @@ public class ThirdPersonController : MonoBehaviour
             Vector3 inputDirection = Quaternion.Euler(0.0f, __targetRotate, 0.0f) * Vector3.forward;
 
             __controller.Move(inputDirection.normalized * speed * Time.deltaTime);
+            
         }
 
         if (input == Vector2.zero)
@@ -142,6 +156,17 @@ public class ThirdPersonController : MonoBehaviour
         }
 
     }
+
+    public void Jump()
+    {
+        if (isGrounded)
+        {
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+        }
+
+    }
+
+
 
     private void CamRotation()
     {
@@ -190,6 +215,5 @@ public class ThirdPersonController : MonoBehaviour
         }
 
     }
-
 }
 

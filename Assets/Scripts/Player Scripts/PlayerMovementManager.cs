@@ -8,11 +8,10 @@ public class PlayerMovementManager : MonoBehaviour
     //Variables
     private PlayerControls playerMovements;
     private PlayerControls.MovementActions basicMovements;
-
-    private PlayerMovements move;
     private ThirdPersonController controller;
 
     public Vector2 look;
+    public bool isGrounded;
 
     public bool cursorInputForLook = true;
     
@@ -23,6 +22,7 @@ public class PlayerMovementManager : MonoBehaviour
         playerMovements = new PlayerControls();
         basicMovements = playerMovements.Movement;
         controller = GetComponent<ThirdPersonController>();
+        basicMovements.Jump.performed += ctx => controller.Jump();
     }
 
     // Update is called once per frame
