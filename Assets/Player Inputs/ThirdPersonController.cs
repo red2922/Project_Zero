@@ -43,10 +43,11 @@ public class ThirdPersonController : MonoBehaviour
     public float vertVelocity;
     public float horzVelocity;
     public float speed = 10f;
+    public float initialSpeed = 10f;
+    public float slowSpeed = 1.5f;
     public bool movementPressed;
     public float gravity = -18f;
     public float jumpHeight = 2.0f;
-
 
     //Player Camera and Rotation
     [SerializeField] public float turnSpeed = 10f;
@@ -161,6 +162,7 @@ public class ThirdPersonController : MonoBehaviour
 
     }
 
+    //Actions
     public void Jump()
     {
         if (isGrounded)
@@ -168,6 +170,18 @@ public class ThirdPersonController : MonoBehaviour
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
 
+    }
+
+
+    public void Attack()
+    {
+            speed = slowSpeed;
+            __animator.SetTrigger("Attack");
+    }
+
+    public void AttackOver()
+    {
+        speed = initialSpeed;
     }
 
 
@@ -219,5 +233,7 @@ public class ThirdPersonController : MonoBehaviour
         }
 
     }
-}
+   
+    }
+
 

@@ -64,7 +64,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Attack&Block"",
+                    ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""0f5ab2b4-025f-49ee-8815-bb6d4b38a183"",
                     ""expectedControlType"": ""Button"",
@@ -76,6 +76,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Player Interactions"",
                     ""type"": ""Button"",
                     ""id"": ""f6efd05f-26b9-4a77-a01b-00ce65128ac4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Block"",
+                    ""type"": ""Button"",
+                    ""id"": ""ffe4f51c-919a-4afa-8e6b-ab3af8976bdd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -266,18 +275,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack&Block"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9457c7c5-39f6-4662-a208-f74d472d6f5e"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack&Block"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -288,18 +286,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack&Block"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b1008cd7-9197-40b3-a869-f82e6e082c1b"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack&Block"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -324,6 +311,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Player Interactions"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b1008cd7-9197-40b3-a869-f82e6e082c1b"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9457c7c5-39f6-4662-a208-f74d472d6f5e"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -336,8 +345,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Movement_Look = m_Movement.FindAction("Look", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
-        m_Movement_AttackBlock = m_Movement.FindAction("Attack&Block", throwIfNotFound: true);
+        m_Movement_Attack = m_Movement.FindAction("Attack", throwIfNotFound: true);
         m_Movement_PlayerInteractions = m_Movement.FindAction("Player Interactions", throwIfNotFound: true);
+        m_Movement_Block = m_Movement.FindAction("Block", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -403,8 +413,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Look;
     private readonly InputAction m_Movement_Jump;
     private readonly InputAction m_Movement_Sprint;
-    private readonly InputAction m_Movement_AttackBlock;
+    private readonly InputAction m_Movement_Attack;
     private readonly InputAction m_Movement_PlayerInteractions;
+    private readonly InputAction m_Movement_Block;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -413,8 +424,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Movement_Look;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @Sprint => m_Wrapper.m_Movement_Sprint;
-        public InputAction @AttackBlock => m_Wrapper.m_Movement_AttackBlock;
+        public InputAction @Attack => m_Wrapper.m_Movement_Attack;
         public InputAction @PlayerInteractions => m_Wrapper.m_Movement_PlayerInteractions;
+        public InputAction @Block => m_Wrapper.m_Movement_Block;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -436,12 +448,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
-            @AttackBlock.started += instance.OnAttackBlock;
-            @AttackBlock.performed += instance.OnAttackBlock;
-            @AttackBlock.canceled += instance.OnAttackBlock;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
             @PlayerInteractions.started += instance.OnPlayerInteractions;
             @PlayerInteractions.performed += instance.OnPlayerInteractions;
             @PlayerInteractions.canceled += instance.OnPlayerInteractions;
+            @Block.started += instance.OnBlock;
+            @Block.performed += instance.OnBlock;
+            @Block.canceled += instance.OnBlock;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -458,12 +473,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
-            @AttackBlock.started -= instance.OnAttackBlock;
-            @AttackBlock.performed -= instance.OnAttackBlock;
-            @AttackBlock.canceled -= instance.OnAttackBlock;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
             @PlayerInteractions.started -= instance.OnPlayerInteractions;
             @PlayerInteractions.performed -= instance.OnPlayerInteractions;
             @PlayerInteractions.canceled -= instance.OnPlayerInteractions;
+            @Block.started -= instance.OnBlock;
+            @Block.performed -= instance.OnBlock;
+            @Block.canceled -= instance.OnBlock;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -487,7 +505,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnAttackBlock(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
         void OnPlayerInteractions(InputAction.CallbackContext context);
+        void OnBlock(InputAction.CallbackContext context);
     }
 }
