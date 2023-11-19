@@ -88,16 +88,20 @@ public class ThirdPersonController : MonoBehaviour
 
     {
         isGrounded = __controller.isGrounded;
-        __animator.SetBool(isMovingHash, true);
-        handleAnimation();
-       
+
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -9.8f;
         }
+
         playerVelocity.y += gravity * Time.deltaTime;
 
         __controller.Move(playerVelocity * Time.deltaTime);
+
+        __animator.SetBool(isMovingHash, true);
+        handleAnimation();
+       
+        
     }
 
 
