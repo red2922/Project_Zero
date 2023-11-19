@@ -4,10 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class RangerAI : BasicEnemyAI
-{ 
-    public GameObject projectile;
-    private void AttackPlayer()
+{
+    public Transform bulletSpawnPoint;
+    public GameObject bulletSprite;
+    public float bulletSpeed = 10;
+
+    public override void AttackPlayer()
     {
+        Debug.Log("AHHHHHH!!!");
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
@@ -16,12 +20,11 @@ public class RangerAI : BasicEnemyAI
         if (!alreadyAttacked)
         {
             ///Attack
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-
+            var bullet = Instantiate(bulletSprite, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+            bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), attackCooldown);
         }
     }
 }
+

@@ -54,6 +54,7 @@ public class BasicEnemyAI : MonoBehaviour
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
     }
+
     public void SearchWalkPoint()
     {
         //Calculate random point in range
@@ -71,9 +72,8 @@ public class BasicEnemyAI : MonoBehaviour
         agent.SetDestination(player.position);
     }
 
-    private void AttackPlayer()
+    public virtual void AttackPlayer()
     {
-        //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
@@ -81,8 +81,6 @@ public class BasicEnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             ///Attack code here
-           
-            ///End of attack code
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), attackCooldown);
