@@ -11,10 +11,8 @@ public class PlayerMovementManager : MonoBehaviour
     private ThirdPersonController controller;
 
     public Vector2 look;
-    public bool isGrounded;
 
     public bool cursorInputForLook = true;
-    
 
     //Essentially Main/What is going to be player in game
     void Awake()
@@ -29,6 +27,8 @@ public class PlayerMovementManager : MonoBehaviour
     void Update()
     {
         controller.getMove(basicMovements.basicMovement.ReadValue<Vector2>());
+        basicMovements.Attack.performed += ctx => controller.Attack();
+       
     }
 
     //Functions
@@ -56,5 +56,6 @@ public class PlayerMovementManager : MonoBehaviour
     {
         look = newLookDirection;
     }
+
 
 }

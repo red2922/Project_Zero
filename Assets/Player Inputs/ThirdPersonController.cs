@@ -47,7 +47,6 @@ public class ThirdPersonController : MonoBehaviour
     public float gravity = -18f;
     public float jumpHeight = 2.0f;
 
-
     //Player Camera and Rotation
     [SerializeField] public float turnSpeed = 10f;
     [SerializeField] public float smoothTime = 0.05f;
@@ -161,6 +160,7 @@ public class ThirdPersonController : MonoBehaviour
 
     }
 
+    //Actions
     public void Jump()
     {
         if (isGrounded)
@@ -169,6 +169,14 @@ public class ThirdPersonController : MonoBehaviour
         }
 
     }
+
+
+    public void Attack()
+    {
+           
+            __animator.SetTrigger("Attack");
+    }
+
 
 
 
@@ -219,5 +227,7 @@ public class ThirdPersonController : MonoBehaviour
         }
 
     }
-}
+   
+    }
+
 
