@@ -43,8 +43,6 @@ public class ThirdPersonController : MonoBehaviour
     public float vertVelocity;
     public float horzVelocity;
     public float speed = 10f;
-    public float initialSpeed = 10f;
-    public float slowSpeed = 1.5f;
     public bool movementPressed;
     public float gravity = -18f;
     public float jumpHeight = 2.0f;
@@ -175,14 +173,10 @@ public class ThirdPersonController : MonoBehaviour
 
     public void Attack()
     {
-            speed = slowSpeed;
+           
             __animator.SetTrigger("Attack");
     }
 
-    public void AttackOver()
-    {
-        speed = initialSpeed;
-    }
 
 
 
