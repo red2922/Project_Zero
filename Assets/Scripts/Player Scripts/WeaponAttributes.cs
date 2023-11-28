@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class WeaponAttributes : MonoBehaviour
 {
-    public StatsManager atm;
+    public StatsManager sm;
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if(other.CompareTag("Enemy"))
         {
-            other.GetComponent<StatsManager>().takeDamage(atm.attackStat);
+            Debug.Log("Hit");
+            other.GetComponent<StatsManager>().takeDamage(sm.attackStat);
         }
     }
 
