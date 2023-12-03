@@ -8,7 +8,7 @@ public class SceneLoader : MonoBehaviour
     // function to load Main_Game
     public void LoadGame()
     {
-        SceneManager.LoadScene("Main_Game");
+        SceneManager.LoadScene("Test_Main_Game");
     }
     // other functions will have to reference scene name in order to load
 
