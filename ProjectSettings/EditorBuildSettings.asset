@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Garret/Main_Game.unity
     guid: d7a18d075a2d5c846b3afdd5872f7a7b
+  - enabled: 1
+    path: Assets/Garret/Test_Main_Game.unity
+    guid: 91a7e86645c953b42a5360fef1ff902c
   m_configObjects: {}
