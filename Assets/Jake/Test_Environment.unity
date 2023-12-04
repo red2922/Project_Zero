@@ -128,39 +128,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 483021978455435570, guid: 7e37064a08619d44ea9cf421cc0a1eec, type: 3}
   m_PrefabInstance: {fileID: 6689234668186721382}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &113031551 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3345218069190616849, guid: 34b4b850bc447fe48a5340554d54f9d1, type: 3}
+--- !u!114 &113031560 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6538658640332471083, guid: 34b4b850bc447fe48a5340554d54f9d1, type: 3}
   m_PrefabInstance: {fileID: 1898865109}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &113031560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113031551}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8155384fcd497244b8c406c51389d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 100
-  healthStat: 100
-  attackStat: 50
---- !u!114 &113031561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113031551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2deb340a082bb4045954fa45d8cb387b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 360206669}
 --- !u!4 &137668006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7390094381304675212, guid: 61389c16ef3167f4c82ce14de64af261, type: 3}
@@ -1500,12 +1478,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3345218069190616849, guid: 34b4b850bc447fe48a5340554d54f9d1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 113031560}
-    - targetCorrespondingSourceObject: {fileID: 3345218069190616849, guid: 34b4b850bc447fe48a5340554d54f9d1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 113031561}
     - targetCorrespondingSourceObject: {fileID: 101162541752373642, guid: 34b4b850bc447fe48a5340554d54f9d1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 360206674}
