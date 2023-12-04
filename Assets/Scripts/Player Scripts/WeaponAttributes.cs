@@ -11,21 +11,17 @@ public class WeaponAttributes : MonoBehaviour
         
         if(other.CompareTag("Enemy"))
         {
-            Debug.Log("Hit");
             other.GetComponent<StatsManager>().takeDamage(sm.attackStat);
-
-            DestroyOther(other);
-           
+            DestroyAtZero(other);
         }
     }
 
 
-    private void DestroyOther(Collider other)
+    private void DestroyAtZero(Collider other)
     {
         if (other.GetComponent<StatsManager>().healthStat <= 0)
         {
-            Debug.Log("I Should be dead");
-            Destroy(other.GetComponent<GameObject>());
+            Destroy(other.gameObject);
         }
     }
 
