@@ -31,7 +31,7 @@ public class BasicEnemyAI : MonoBehaviour
     public void Update()
     {
         //Stop floating character
-        agent.transform.position = new Vector3(transform.position.x, 2, transform.position.z);
+        agent.transform.position = new Vector3(transform.position.x, -1, transform.position.z);
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, LayerMask.GetMask("Player"));
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, LayerMask.GetMask("Player"));

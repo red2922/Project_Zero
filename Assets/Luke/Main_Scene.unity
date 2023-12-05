@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -314,13 +314,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696855152}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.48032978, y: -0.48685113, z: 0.48448437, w: 0.545467}
-  m_LocalPosition: {x: -2.6, y: 23.2, z: -18.3}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 26.8, y: 2.5, z: -18.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 84.717, y: -45.519, z: 41.357}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1297206922
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +367,9 @@ MonoBehaviour:
   attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
-  projectile: {fileID: 3253390934440509539, guid: e81ac8a7f5cfc463b8be4e959a67b7e6, type: 3}
+  bulletSpawnPoint: {fileID: 0}
+  bulletSprite: {fileID: 0}
+  bulletSpeed: 10
 --- !u!195 &1297206925
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -491,9 +493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0430fc37927884f89bff77cecab5be09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpawnPoint: {fileID: 1691377548}
-  bulletSprite: {fileID: 3253390934440509539, guid: e81ac8a7f5cfc463b8be4e959a67b7e6, type: 3}
-  bulletSpeed: 10
 --- !u!114 &1297206931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -849,7 +848,7 @@ GameObject:
   - component: {fileID: 1979588281}
   - component: {fileID: 1979588280}
   m_Layer: 7
-  m_Name: Player
+  m_Name: Zero
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

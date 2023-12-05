@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Garret/Main_Menu.unity
     guid: dfc214e516d635143b01176876d37c54
-  - enabled: 1
+  - enabled: 0
     path: Assets/Garret/test_Cube.unity
     guid: 54557eb608b9cfb41b36831127ff4e11
-  - enabled: 1
+  - enabled: 0
     path: Assets/Garret/Main_Game.unity
     guid: d7a18d075a2d5c846b3afdd5872f7a7b
   - enabled: 1
