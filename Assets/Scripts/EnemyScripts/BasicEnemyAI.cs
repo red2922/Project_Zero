@@ -3,6 +3,8 @@ using UnityEngine.AI;
 
 public class BasicEnemyAI : MonoBehaviour
 {
+    private Animator __animator;
+
     public NavMeshAgent agent;
 
     public Transform player;
@@ -27,6 +29,14 @@ public class BasicEnemyAI : MonoBehaviour
         player = GameObject.Find("Zero").transform;
         agent = GetComponent<NavMeshAgent>();
     }
+
+    public void Start()
+    {
+        __animator = GetComponent<Animator>();
+    }
+
+
+
 
     public void Update()
     {
@@ -81,6 +91,7 @@ public class BasicEnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             ///Attack code here
+            __animator.SetTrigger("Attack");
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), attackCooldown);
