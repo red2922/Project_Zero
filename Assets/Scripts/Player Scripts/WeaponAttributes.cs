@@ -25,8 +25,6 @@ public class WeaponAttributes : MonoBehaviour
         }
     }
 
-
-
 }
 
 
