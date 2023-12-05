@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponAttributes : MonoBehaviour
 {
     public StatsManager sm;
+    public AudioSource pipe;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,6 +22,7 @@ public class WeaponAttributes : MonoBehaviour
     {
         if (other.GetComponent<StatsManager>().healthStat <= 0)
         {
+            pipe.Play();
             Destroy(other.gameObject);
         }
     }

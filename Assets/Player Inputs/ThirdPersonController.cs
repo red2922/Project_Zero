@@ -56,6 +56,8 @@ public class ThirdPersonController : MonoBehaviour
     private float _curr_Velocity;
     private bool rotateOnMove = true;
 
+    public AudioSource swing;
+
 
     private void Awake()
     {
@@ -173,7 +175,7 @@ public class ThirdPersonController : MonoBehaviour
 
     public void Attack()
     {
-           
+            swing.Play();
             __animator.SetTrigger("Attack");
     }
 
