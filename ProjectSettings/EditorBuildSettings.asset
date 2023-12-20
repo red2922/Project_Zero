@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Garret/Main_Menu.unity
+    guid: dfc214e516d635143b01176876d37c54
+  - enabled: 0
+    path: Assets/Garret/test_Cube.unity
+    guid: 54557eb608b9cfb41b36831127ff4e11
+  - enabled: 0
+    path: Assets/Garret/Main_Game.unity
+    guid: d7a18d075a2d5c846b3afdd5872f7a7b
+  - enabled: 1
+    path: Assets/Garret/Test_Main_Game.unity
+    guid: 91a7e86645c953b42a5360fef1ff902c
+  - enabled: 0
+    path: Assets/Garret/pause_scene.unity
+    guid: bfe5450c9226b464d956f39f04ae3d4f
   m_configObjects: {}
