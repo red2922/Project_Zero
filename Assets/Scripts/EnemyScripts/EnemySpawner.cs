@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {   
     [SerializeField]
-    private GameObject melee;
+    private GameObject enemyAsset;
 
     private float interval = 4.5f;
 
@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(spawnEnemy(interval, melee));
+        StartCoroutine(spawnEnemy(interval, enemyAsset));
     }
 
     private IEnumerator spawnEnemy(float interval, GameObject enemy)

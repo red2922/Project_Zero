@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 6838185163302674101}
   - component: {fileID: 9037244538415989611}
   m_Layer: 8
-  m_Name: Black Enemy 1
+  m_Name: 'Melee Enemy '
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
